@@ -19,6 +19,49 @@
             android:id="@+id/diary_edit_action"
             app:destination="@id/diary_edit_fragment" />
 
+        <action
+            android:id="@+id/login_action"
+            app:destination="@id/diary_login_fragment" />
+
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/register_fragment"
+        android:name="com.app.diary.ui.RegisterFragment"
+        android:label="注册"
+        tools:layout="@layout/fragment_register">
+
+        <!-- 注册成功后跳转到首页 -->
+        <action
+            android:id="@+id/action_register_to_index"
+            app:destination="@id/index_fragment"
+            app:popUpTo="@id/index_fragment"
+            app:popUpToInclusive="true"/>
+
+    </fragment>
+
+
+
+    <fragment
+        android:id="@+id/diary_login_fragment"
+        android:name="com.app.diary.ui.LoginFragment"
+        android:label="日记登录页"
+        tools:layout="@layout/fragment_login">
+
+        <action
+            android:id="@+id/action_login_to_index"
+            app:destination="@id/index_fragment"
+            app:popUpTo="@id/index_fragment"
+            app:popUpToInclusive="true"
+
+            />
+<!--        跳转到注册页的action-->
+        <action
+            android:id="@+id/action_login_to_register"
+            app:destination="@id/register_fragment"/>
+
+
     </fragment>
 
     <fragment

@@ -22,6 +22,9 @@ public class IndexFragment extends BaseFragment {
     private Toolbar toolbar;//标题栏控件
     private Button browseButton;//查看日记按钮控件
     private Button createButton;//创建日记按钮控件
+
+    private Button loginButton;
+
     private TextView versionTextView;//当前版本文本控件
 
     @Nullable
@@ -44,6 +47,9 @@ public class IndexFragment extends BaseFragment {
         toolbar = view.findViewById(R.id.toolbar);
         browseButton = view.findViewById(R.id.browse_button);
         createButton = view.findViewById(R.id.create_button);
+//        注册页面
+        loginButton = view.findViewById(R.id.login_button);
+
         versionTextView = view.findViewById(R.id.version_textView);
     }
 
@@ -72,6 +78,24 @@ public class IndexFragment extends BaseFragment {
                 getNavController().navigate(IndexFragmentDirections.diaryEditAction(0));
             }
 
+        });
+
+        //设置点击注册按钮的点击事件
+        loginButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                getNavController().navigate(IndexFragmentDirections.diaryEditAction(0));
+            }
+
+        });
+
+        // 在setView方法中修改登录按钮的点击事件
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getNavController().navigate(IndexFragmentDirections.loginAction());
+            }
         });
 
         //将当前版本名称显示在文本上
