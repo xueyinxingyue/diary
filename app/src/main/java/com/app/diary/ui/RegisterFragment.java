@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -17,6 +18,8 @@ public class RegisterFragment extends BaseFragment {
 
     private EditText etUsername, etEmail, etPassword, etConfirmPassword;
     private Button btnRegister;
+
+    private TextView tvToLogin;
 
     @Nullable
     @Override
@@ -38,6 +41,8 @@ public class RegisterFragment extends BaseFragment {
         etPassword = view.findViewById(R.id.et_password);
         etConfirmPassword = view.findViewById(R.id.et_confirm_password);
         btnRegister = view.findViewById(R.id.btn_register);
+
+        tvToLogin = view.findViewById(R.id.tv_to_login);
     }
 
     private void setView() {
@@ -48,6 +53,9 @@ public class RegisterFragment extends BaseFragment {
                 // 注册成功后跳转到首页
                 getNavController().navigate(R.id.action_register_to_index);
             }
+        });
+        tvToLogin.setOnClickListener(v -> {
+            getNavController().navigate(R.id.login_fragment);
         });
     }
 

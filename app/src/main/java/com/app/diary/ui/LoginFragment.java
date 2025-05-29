@@ -15,12 +15,9 @@ import androidx.appcompat.widget.Toolbar;
 import com.app.diary.R;
 
 public class LoginFragment extends BaseFragment {
-
-    private Toolbar toolbar;
     private EditText etUsername;
     private EditText etPassword;
     private Button btnLogin;
-    private Button btnRegister;
 
     private TextView tvToRegister;
 
@@ -39,29 +36,20 @@ public class LoginFragment extends BaseFragment {
     }
 
     private void initView(@NonNull View view) {
-        toolbar = view.findViewById(R.id.toolbar);
         etUsername = view.findViewById(R.id.et_username);
         etPassword = view.findViewById(R.id.et_password);
         btnLogin = view.findViewById(R.id.btn_login);
-        btnRegister = view.findViewById(R.id.btn_register);
 
         tvToRegister = view.findViewById(R.id.tv_to_register);
     }
 
     private void setView() {
-        initSupportActionBar(toolbar, true);
-
         btnLogin.setOnClickListener(v -> {
             // 这里添加登录验证逻辑
             // 验证成功后导航到首页
             getNavController().navigate(R.id.action_login_to_index);
         });
 
-        btnRegister.setOnClickListener(v -> {
-            // 导航到注册页面
-            getNavController().navigate(R.id.action_login_to_register);
-
-        });
         tvToRegister.setOnClickListener(v -> {
             getNavController().navigate(R.id.action_login_to_register);
         });

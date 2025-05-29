@@ -60,10 +60,10 @@
         android:layout_marginBottom="16dp"/>
 
     <TextView
+        android:id="@+id/tv_to_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="已有账号？去登录"
         android:textColor="?attr/colorPrimary"
-        android:layout_gravity="center_horizontal"
-        android:onClick="onLoginTextClick"/>
+        android:layout_gravity="center_horizontal"/>
 </LinearLayout>

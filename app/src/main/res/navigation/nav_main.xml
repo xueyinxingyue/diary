@@ -21,7 +21,7 @@
 
         <action
             android:id="@+id/login_action"
-            app:destination="@id/diary_login_fragment" />
+            app:destination="@id/login_fragment" />
 
     </fragment>
 
@@ -44,9 +44,9 @@
 
 
     <fragment
-        android:id="@+id/diary_login_fragment"
+        android:id="@+id/login_fragment"
         android:name="com.app.diary.ui.LoginFragment"
-        android:label="日记登录页"
+        android:label="用户登录页"
         tools:layout="@layout/fragment_login">
 
         <action
