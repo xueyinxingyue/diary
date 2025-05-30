@@ -50,7 +50,9 @@ public class DiaryEditViewModel extends BaseViewModel {
         }
         loaded = true;
 
-        diaryDataSource.selectOne(diaryId).compose(SingleObserverUtils.applyUIScheduler(this)).subscribe(new DisposableSingleObserver<Diary>() {
+        diaryDataSource.selectOne(diaryId)
+                .compose(SingleObserverUtils.applyUIScheduler(this))
+                .subscribe(new DisposableSingleObserver<Diary>() {
 
             @Override
             public void onSuccess(Diary diary) {
@@ -87,6 +89,7 @@ public class DiaryEditViewModel extends BaseViewModel {
 
             @Override
             public CompletableSource apply(Diary diary) throws Throwable {
+                //TODO 新增日记
                 return diaryDataSource.insertDiary(diary);
             }
 

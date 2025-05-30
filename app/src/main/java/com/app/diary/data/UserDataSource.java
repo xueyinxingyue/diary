@@ -16,5 +16,6 @@ public interface UserDataSource {
     /**
      * 根据username查询用户
      */
-    Single<User> selectOne(long username);
+
+    Single<User> selectOne(String username);
 }

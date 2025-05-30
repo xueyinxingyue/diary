@@ -10,8 +10,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.app.diary.R;
+import com.app.diary.ui.viewModel.UserLoginViewModel;
 import com.app.diary.utils.AppUtils;
 
 /**
@@ -27,6 +29,10 @@ public class IndexFragment extends BaseFragment {
 
     private TextView versionTextView;//当前版本文本控件
 
+    private UserLoginViewModel userLoginViewModel;
+
+    private String username;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -36,8 +42,18 @@ public class IndexFragment extends BaseFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        userLoginViewModel = new ViewModelProvider(this).get(UserLoginViewModel.class);
         initView(view);
         setView();
+        userLoginViewModel.loadData(username,true);
+    }
+
+    /**
+     * 初始化数据
+     */
+    private void initData(){
+        //TODO 获取用户id
+//        userId =
     }
 
     /**

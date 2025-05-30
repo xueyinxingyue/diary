@@ -19,14 +19,15 @@ public class UserDataSourceImpl implements UserDataSource {
     public UserDataSourceImpl(@NonNull AppDatabase appDatabase){
         this.appDatabase = appDatabase;
     }
+
     @Override
     public Completable insertUser(@NonNull User user) {
         return appDatabase.userDao().insert(user);
     }
 
     @Override
-    public Single<User> selectOne(long username) {
-        return appDatabase.userDao().getOne(username);
+    public Single<User> selectOne(String username) {
+        return appDatabase.userDao().selectOne(username);
     }
 
 

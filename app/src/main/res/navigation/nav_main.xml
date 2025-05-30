@@ -28,9 +28,9 @@
 
     <fragment
         android:id="@+id/register_fragment"
-        android:name="com.app.diary.ui.RegisterFragment"
+        android:name="com.app.diary.ui.UserRegisterFragment"
         android:label="注册"
-        tools:layout="@layout/fragment_register">
+        tools:layout="@layout/fragment_user_register">
 
         <!-- 注册成功后跳转到首页 -->
         <action
@@ -45,9 +45,9 @@
 
     <fragment
         android:id="@+id/login_fragment"
-        android:name="com.app.diary.ui.LoginFragment"
+        android:name="com.app.diary.ui.UserLoginFragment"
         android:label="用户登录页"
-        tools:layout="@layout/fragment_login">
+        tools:layout="@layout/fragment_user_login">
 
         <action
             android:id="@+id/action_login_to_index"

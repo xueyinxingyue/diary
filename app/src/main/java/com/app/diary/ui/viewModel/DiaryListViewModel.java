@@ -1,6 +1,7 @@
 package com.app.diary.ui.viewModel;
 
 import android.app.Application;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -32,6 +33,7 @@ public class DiaryListViewModel extends BaseViewModel {
      */
     public LiveData<List<Diary>> getDiaryListLiveData() {
         return diaryListLiveData;
+
     }
 
     /**
@@ -43,6 +45,7 @@ public class DiaryListViewModel extends BaseViewModel {
         }
         loaded = true;
 
+        //TODO 查询日记列表，后续要加上userId
         diaryDataSource.selectList().compose(SingleObserverUtils.applyUIScheduler(this)).subscribe(new DisposableSingleObserver<List<Diary>>() {
 
             @Override

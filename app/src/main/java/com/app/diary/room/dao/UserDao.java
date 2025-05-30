@@ -17,6 +17,6 @@ public interface UserDao {
     @Insert
     Completable insert(User user);
 
-    @Query("SELECT * FROM user WHERE username = (:username)")
-    Single<User> getOne(long username);
+    @Query("SELECT * FROM user WHERE username = (:username) LIMIT 1")
+    Single<User> selectOne(String username);
 }
