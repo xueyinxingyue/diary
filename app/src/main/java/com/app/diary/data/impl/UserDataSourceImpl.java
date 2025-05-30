@@ -7,7 +7,11 @@ import com.app.diary.data.UserDataSource;
 import com.app.diary.room.database.AppDatabase;
 
 import io.reactivex.rxjava3.core.Completable;
+import io.reactivex.rxjava3.core.Single;
 
+/**
+ * 用户数据源的实现类
+ */
 public class UserDataSourceImpl implements UserDataSource {
     @NonNull
     private AppDatabase appDatabase;
@@ -19,4 +23,11 @@ public class UserDataSourceImpl implements UserDataSource {
     public Completable insertUser(@NonNull User user) {
         return appDatabase.userDao().insert(user);
     }
+
+    @Override
+    public Single<User> selectOne(long username) {
+        return appDatabase.userDao().getOne(username);
+    }
+
+
 }
