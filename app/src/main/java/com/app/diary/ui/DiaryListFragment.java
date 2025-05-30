@@ -19,6 +19,7 @@ import com.app.diary.R;
 import com.app.diary.adapter.DiaryRecyclerAdapter;
 import com.app.diary.bean.Constant;
 import com.app.diary.bean.Diary;
+import com.app.diary.ui.viewModel.DiaryListViewModel;
 import com.app.diary.utils.SizeUtils;
 
 import java.util.List;

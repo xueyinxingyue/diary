@@ -1,4 +1,4 @@
-package com.app.diary.ui;
+package com.app.diary.ui.viewModel;
 
 import android.app.Application;
 
