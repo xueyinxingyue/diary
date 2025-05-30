@@ -16,7 +16,7 @@ import com.app.diary.R;
 
 public class RegisterFragment extends BaseFragment {
 
-    private EditText etUsername, etEmail, etPassword, etConfirmPassword;
+    private EditText etName,etUsername, etEmail, etPassword, etConfirmPassword;
     private Button btnRegister;
 
     private TextView tvToLogin;
@@ -36,6 +36,7 @@ public class RegisterFragment extends BaseFragment {
     }
 
     private void initView(View view) {
+        etName = view.findViewById(R.id.et_name);
         etUsername = view.findViewById(R.id.et_username);
         etEmail = view.findViewById(R.id.et_email);
         etPassword = view.findViewById(R.id.et_password);
@@ -60,10 +61,16 @@ public class RegisterFragment extends BaseFragment {
     }
 
     private boolean validateInput() {
+        String name = etName.getText().toString().trim();
         String username = etUsername.getText().toString().trim();
         String email = etEmail.getText().toString().trim();
         String password = etPassword.getText().toString();
         String confirmPassword = etConfirmPassword.getText().toString();
+
+        if (name.isEmpty()){
+            etName.setError("请输入昵称");
+            return false;
+        }
 
         if (username.isEmpty()) {
             etUsername.setError("请输入用户名");
