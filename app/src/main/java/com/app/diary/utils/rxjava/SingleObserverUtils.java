@@ -2,7 +2,7 @@ package com.app.diary.utils.rxjava;
 
 import androidx.annotation.Nullable;
 
-import com.app.diary.ui.BaseViewModel;
+import com.app.diary.ui.viewModel.BaseViewModel;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.SingleTransformer;
