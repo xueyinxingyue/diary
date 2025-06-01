@@ -101,6 +101,12 @@ public class UserRegisterFragment extends BaseFragment {
         String password = etPassword.getText().toString();
         String confirmPassword = etConfirmPassword.getText().toString();
 
+        if (isUsernameError) {
+            Navigation.findNavController(requireView()).navigate(R.id.login_fragment);
+            ToastUtils.showShort("用户名已存在，请登录");
+            return false;
+        }
+
         if (name.isEmpty()){
             etName.setError("请输入昵称");
             return false;
@@ -108,10 +114,6 @@ public class UserRegisterFragment extends BaseFragment {
 
         if (username.isEmpty()) {
             etUsername.setError("请输入用户名");
-            return false;
-        }else if (isUsernameError) {
-            Navigation.findNavController(requireView()).navigate(R.id.login_fragment);
-            ToastUtils.showShort("用户名已存在，请登录");
             return false;
         }
 
