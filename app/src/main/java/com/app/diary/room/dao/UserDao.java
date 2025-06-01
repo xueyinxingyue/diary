@@ -17,6 +17,9 @@ public interface UserDao {
     @Insert
     Completable insert(User user);
 
+    @Query("SELECT COUNT(*) > 0 FROM user WHERE username = :username")
+    boolean existsByUsername(String username);
+
     @Query("SELECT * FROM user WHERE username = (:username) LIMIT 1")
     Single<User> selectOne(String username);
 }

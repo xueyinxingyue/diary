@@ -19,6 +19,7 @@ import androidx.navigation.Navigation;
 import com.app.diary.R;
 import com.app.diary.bean.User;
 import com.app.diary.ui.viewModel.UserRegisterViewModel;
+import com.app.diary.utils.ToastUtils;
 
 public class UserRegisterFragment extends BaseFragment {
 
@@ -27,6 +28,7 @@ public class UserRegisterFragment extends BaseFragment {
     private TextView tvToLogin;
 
     private UserRegisterViewModel viewModel;
+    private boolean isUsernameError;
 
     @Nullable
     @Override
@@ -51,23 +53,84 @@ public class UserRegisterFragment extends BaseFragment {
         etConfirmPassword = view.findViewById(R.id.et_confirm_password);
         btnRegister = view.findViewById(R.id.btn_register);
         tvToLogin = view.findViewById(R.id.tv_to_login);
+
+        // 设置用户名输入框的失焦监听器（只设置一次）
+        etUsername.setOnFocusChangeListener((v, hasFocus) -> {
+            if (!hasFocus) { // 失去焦点时校验
+                String username = etUsername.getText().toString().trim();
+
+                if (username.isEmpty()) {
+                    etUsername.setError("请输入用户名");
+                } else {
+                    new Thread(() -> {
+                        boolean exists = viewModel.isUsernameExists(username);
+                        requireActivity().runOnUiThread(() -> {
+                            if (exists) {
+                                etUsername.setError("用户名已存在，请登录");
+                                isUsernameError = true; // 标记为用户名已存在
+                            } else {
+                                etUsername.setError(null); // 清除错误提示
+                                Toast.makeText(requireContext(), "用户名可用", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }).start();
+                }
+            }
+        });
     }
 
     private void initViewModel() {
-        viewModel = new ViewModelProvider(requireActivity()).get(UserRegisterViewModel.class);
+        viewModel = new ViewModelProvider(this).get(UserRegisterViewModel.class);
 
         viewModel.getRegisterSuccess().observe(getViewLifecycleOwner(), success -> {
             if (Boolean.TRUE.equals(success)) {
-                Log.i("tag", "注册成功");
                 Toast.makeText(requireContext(), "注册成功", Toast.LENGTH_SHORT).show();
                 Navigation.findNavController(requireView()).navigate(R.id.action_register_to_index);
             }
         });
 
         viewModel.getErrorLiveData().observe(getViewLifecycleOwner(), errorMsg -> {
-            Log.i("tag", errorMsg);
             Toast.makeText(requireContext(), "注册失败：" + errorMsg, Toast.LENGTH_SHORT).show();
         });
+    }
+
+    private boolean validateInput() {
+        String name = etName.getText().toString().trim();
+        String username = etUsername.getText().toString().trim();
+        String email = etEmail.getText().toString().trim();
+        String password = etPassword.getText().toString();
+        String confirmPassword = etConfirmPassword.getText().toString();
+
+        if (name.isEmpty()){
+            etName.setError("请输入昵称");
+            return false;
+        }
+
+        if (username.isEmpty()) {
+            etUsername.setError("请输入用户名");
+            return false;
+        }else if (isUsernameError) {
+            Navigation.findNavController(requireView()).navigate(R.id.login_fragment);
+            ToastUtils.showShort("用户名已存在，请登录");
+            return false;
+        }
+
+        if (email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            etEmail.setError("请输入有效的邮箱");
+            return false;
+        }
+
+        if (password.isEmpty() || password.length() < 6) {
+            etPassword.setError("密码至少6位");
+            return false;
+        }
+
+        if (!password.equals(confirmPassword)) {
+            etConfirmPassword.setError("两次密码不一致");
+            return false;
+        }
+
+        return true;
     }
 
     private void setView() {
@@ -91,40 +154,5 @@ public class UserRegisterFragment extends BaseFragment {
         tvToLogin.setOnClickListener(v -> {
             Navigation.findNavController(requireView()).navigate(R.id.login_fragment);
         });
-    }
-
-    private boolean validateInput() {
-        String name = etName.getText().toString().trim();
-        String username = etUsername.getText().toString().trim();
-        String email = etEmail.getText().toString().trim();
-        String password = etPassword.getText().toString();
-        String confirmPassword = etConfirmPassword.getText().toString();
-
-        if (name.isEmpty()){
-            etName.setError("请输入昵称");
-            return false;
-        }
-
-        if (username.isEmpty()) {
-            etUsername.setError("请输入用户名");
-            return false;
-        }
-
-        if (email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            etEmail.setError("请输入有效的邮箱");
-            return false;
-        }
-
-        if (password.isEmpty() || password.length() < 6) {
-            etPassword.setError("密码至少6位");
-            return false;
-        }
-
-        if (!password.equals(confirmPassword)) {
-            etConfirmPassword.setError("两次密码不一致");
-            return false;
-        }
-
-        return true;
     }
 }

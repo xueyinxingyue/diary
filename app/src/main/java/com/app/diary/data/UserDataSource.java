@@ -13,6 +13,8 @@ public interface UserDataSource {
      */
     Completable insertUser(@NonNull User user);
 
+    boolean existsByUsername(String username);
+
     /**
      * 根据username查询用户
      */

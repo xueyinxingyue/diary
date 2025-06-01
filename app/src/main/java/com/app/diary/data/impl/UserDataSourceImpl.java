@@ -26,6 +26,11 @@ public class UserDataSourceImpl implements UserDataSource {
     }
 
     @Override
+    public boolean existsByUsername(String username) {
+        return appDatabase.userDao().existsByUsername(username);
+    }
+
+    @Override
     public Single<User> selectOne(String username) {
         return appDatabase.userDao().selectOne(username);
     }

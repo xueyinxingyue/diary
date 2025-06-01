@@ -22,6 +22,8 @@ public class User extends BaseBean{
     @NonNull
     private String email;//邮箱
 
+    //省略get、set方法
+
     @NonNull
     public Long getId() {
         return id;

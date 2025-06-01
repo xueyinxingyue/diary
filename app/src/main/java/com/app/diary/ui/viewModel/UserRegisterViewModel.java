@@ -2,6 +2,7 @@ package com.app.diary.ui.viewModel;
 
 import android.annotation.SuppressLint;
 import android.app.Application;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
@@ -12,7 +13,9 @@ import com.app.diary.bean.User;
 import com.app.diary.data.UserDataSource;
 import com.app.diary.utils.rxjava.CompletableObserverUtils;
 
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Completable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class UserRegisterViewModel extends BaseViewModel {
     private MutableLiveData<Boolean> registerSuccess = new MutableLiveData<>();
@@ -33,22 +36,29 @@ public class UserRegisterViewModel extends BaseViewModel {
         return errorLiveData;
     }
 
-    //TODO 无法创建用户
+    /**
+     * 校验用户名是否可用
+     */
+    public boolean isUsernameExists(String username) {
+        try {
+            return userDataSource.existsByUsername(username);
+        } catch (Exception e) {
+            Log.e("tag", "该用户已存在，请登录", e);
+            return false;
+        }
+    }
+
     @SuppressLint("CheckResult")
     public void registerUser(User user) {
-        userDataSource.selectOne(user.getUsername())
-                .flatMapCompletable(existingUser -> {
-                    if (existingUser != null) {
-                        return Completable.error(new Exception("用户名已存在"));
-                    } else {
-                        return userDataSource.insertUser(user);
-                    }
-                })
-                .compose(CompletableObserverUtils.applyUIScheduler(this))
+        userDataSource.insertUser(user)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
                 .subscribe(() -> {
                     registerSuccess.setValue(true);
+                    Log.i("tag", "注册成功，欢迎"+ user.getUsername());
                 }, throwable -> {
-                    errorLiveData.setValue(throwable.getMessage());
+                    errorLiveData.setValue("注册失败：" + throwable.getMessage());
+                    Log.e("tag", "注册失败", throwable);
                 });
     }
 }
