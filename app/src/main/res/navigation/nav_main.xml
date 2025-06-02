@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_graph"
-    app:startDestination="@+id/index_fragment">
+    app:startDestination="@+id/login_fragment">
 
     <fragment
         android:id="@+id/index_fragment"
@@ -22,6 +22,10 @@
         <action
             android:id="@+id/login_action"
             app:destination="@id/login_fragment" />
+
+        <action
+            android:id="@+id/action_index_to_profile"
+            app:destination="@id/profile_fragment"/>
 
     </fragment>
 
@@ -102,6 +106,20 @@
             android:name="diaryId"
             app:argType="long" />
 
+    </fragment>
+
+    <!-- 添加个人中心Fragment -->
+    <fragment
+        android:id="@+id/profile_fragment"
+        android:name="com.app.diary.ui.ProfileFragment"
+        android:label="个人中心"
+        tools:layout="@layout/fragment_profile">
+
+        <action
+            android:id="@+id/action_profile_to_login"
+            app:destination="@id/login_fragment"
+            app:popUpTo="@id/login_fragment"
+            app:popUpToInclusive="true"/>
     </fragment>
 
 </navigation>

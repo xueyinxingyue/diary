@@ -60,7 +60,7 @@
                 android:textColor="@color/pink_700"
                 android:textSize="26sp" />
 
-            <Button
+<!--            <Button
                 android:id="@+id/login_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -71,6 +71,20 @@
                 android:paddingEnd="30dp"
                 android:paddingBottom="20dp"
                 android:text="点击注册"
+                android:textColor="@color/pink_700"
+                android:textSize="26sp" />-->
+
+            <Button
+                android:id="@+id/profile_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/btn_hollow"
+                android:paddingStart="30dp"
+                android:paddingTop="20dp"
+                android:paddingEnd="30dp"
+                android:paddingBottom="20dp"
+                android:text="个人中心"
                 android:textColor="@color/pink_700"
                 android:textSize="26sp" />
 
