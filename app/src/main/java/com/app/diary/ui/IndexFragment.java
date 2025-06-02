@@ -26,6 +26,7 @@ public class IndexFragment extends BaseFragment {
     private Button createButton;//创建日记按钮控件
 
 //    private Button loginButton;
+    private Button profileButton;
 
     private TextView versionTextView;//当前版本文本控件
 
@@ -66,6 +67,7 @@ public class IndexFragment extends BaseFragment {
 //        注册页面
 //        loginButton = view.findViewById(R.id.login_button);
 
+        profileButton = view.findViewById(R.id.profile_button);
         versionTextView = view.findViewById(R.id.version_textView);
     }
 
@@ -116,6 +118,10 @@ public class IndexFragment extends BaseFragment {
 
         //将当前版本名称显示在文本上
         versionTextView.setText("当前版本:v" + AppUtils.getVersionName());
+
+        profileButton.setOnClickListener(v -> {
+            getNavController().navigate(R.id.action_index_to_profile);
+        });
     }
 
 }
