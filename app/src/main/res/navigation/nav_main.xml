@@ -113,7 +113,7 @@
         android:id="@+id/profile_fragment"
         android:name="com.app.diary.ui.ProfileFragment"
         android:label="个人中心"
-        tools:layout="@layout/fragment_profile">
+        tools:layout="@layout/fragment_user_profile">
 
         <action
             android:id="@+id/action_profile_to_login"
