@@ -1,5 +1,8 @@
 package com.app.diary.ui;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.app.diary.Mapp;
 import com.app.diary.R;
 
 public class UserProfileFragment extends BaseFragment {
@@ -15,6 +20,8 @@ public class UserProfileFragment extends BaseFragment {
     private ImageView ivAvatar;
     private TextView tvNickname, tvUsername, tvEmail;
     private TextView tvNicknameDetail, tvUsernameDetail, tvEmailDetail;
+
+    long userId = Mapp.getInstance().getCurrentUserId();//获取userID
     private Button btnSettings, btnLogout;
 
     @Nullable
@@ -48,8 +55,8 @@ public class UserProfileFragment extends BaseFragment {
 
         btnLogout.setOnClickListener(v -> {
             // 清除登录状态
-            // SharedPreferences.Editor editor = getContext().getSharedPreferences("user_prefs", Context.MODE_PRIVATE).edit();
-            // editor.putBoolean("is_logged_in", false).apply();
+             SharedPreferences.Editor editor = getContext().getSharedPreferences("user_prefs", Context.MODE_PRIVATE).edit();
+             editor.putBoolean("is_logged_in", false).apply();
 
             // 跳转到登录页
             getNavController().navigate(R.id.action_profile_to_login);

@@ -11,6 +11,10 @@
         android:label="首页"
         tools:layout="@layout/fragment_index">
 
+        <argument
+            android:name="userId"
+            app:argType="long" />
+
         <action
             android:id="@+id/diary_list_action"
             app:destination="@id/diary_list_fragment" />

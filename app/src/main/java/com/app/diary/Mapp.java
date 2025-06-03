@@ -22,6 +22,8 @@ public class Mapp extends Application {
 
     private UserDataSource userDataSource;//用户数据源
 
+    private long currentUserId = -1;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -35,37 +37,45 @@ public class Mapp extends Application {
         return instance;
     }
 
+    public void setCurrentUserId(long userId) {
+        currentUserId = userId;
+    }
+
+    public long getCurrentUserId() {
+        return currentUserId;
+    }
+
     /**
      * 懒加载获取数据库
      */
     public AppDatabase getAppDatabase() {
-        if (appDatabase == null) {
-            appDatabase = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "diary.db").addMigrations(new Migration(2, 3) {
-
-                @Override
-                public void migrate(@NonNull SupportSQLiteDatabase database) {
-                    // 将SQLite迁移到Room，数据结构未发生变化，所以这里不做任何处理，保持空实现
-                    database.execSQL("CREATE TABLE IF NOT EXISTS `user` (" +
-                            "`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
-                            "`name` TEXT NOT NULL, " +
-                            "`username` TEXT NOT NULL, " +
-                            "`password` TEXT NOT NULL, " +
-                            "`email` TEXT NOT NULL)");
-
-                }
-
-            }).build();
-
-        }
-//        appDatabase = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "diary.db")
-//                .addMigrations(new Migration(2, 3) {
-//                    @Override
-//                    public void migrate(@NonNull SupportSQLiteDatabase database) {
-//                        // 迁移逻辑
-//                    }
-//                })
-//                .fallbackToDestructiveMigration() // 开发阶段使用
-//                .build();
+//        if (appDatabase == null) {
+//            appDatabase = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "diary.db").addMigrations(new Migration(2, 3) {
+//
+//                @Override
+//                public void migrate(@NonNull SupportSQLiteDatabase database) {
+//                    // 将SQLite迁移到Room，数据结构未发生变化，所以这里不做任何处理，保持空实现
+//                    database.execSQL("CREATE TABLE IF NOT EXISTS `user` (" +
+//                            "`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
+//                            "`name` TEXT NOT NULL, " +
+//                            "`username` TEXT NOT NULL, " +
+//                            "`password` TEXT NOT NULL, " +
+//                            "`email` TEXT NOT NULL)");
+//
+//                }
+//
+//            }).build();
+//
+//        }
+        appDatabase = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "diary.db")
+                .addMigrations(new Migration(2, 3) {
+                    @Override
+                    public void migrate(@NonNull SupportSQLiteDatabase database) {
+                        // 迁移逻辑
+                    }
+                })
+                .fallbackToDestructiveMigration() // 开发阶段使用
+                .build();
         return appDatabase;
     }
 

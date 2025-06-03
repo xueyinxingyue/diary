@@ -32,16 +32,6 @@ public class UserLoginViewModel extends BaseViewModel {
         return userLiveData;
     }
 
-    // 注册成功事件
-    public LiveData<Boolean> getRegisterSuccess() {
-        return registerSuccess;
-    }
-
-    // 错误信息事件
-    public LiveData<String> getErrorLiveData() {
-        return errorLiveData;
-    }
-
     /**
      * 加载用户信息（登录逻辑）
      */
@@ -57,11 +47,11 @@ public class UserLoginViewModel extends BaseViewModel {
                     @Override
                     public void onSuccess(User user) {
                         userLiveData.setValue(user);
+                        Mapp.getInstance().setCurrentUserId(user.getId());
                     }
 
                     @Override
                     public void onError(@NonNull Throwable e) {
-                        ToastUtils.showShort("获取失败，原因：" + e.getMessage());
                         userLiveData.setValue(null);
                     }
                 });
