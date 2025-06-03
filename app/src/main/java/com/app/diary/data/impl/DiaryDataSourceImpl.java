@@ -46,13 +46,13 @@ public class DiaryDataSourceImpl implements DiaryDataSource {
     }
 
     @Override
-    public Single<Diary> selectOne(long diaryId) {
-        return appDatabase.diaryDao().getOne(diaryId);
+    public Single<Diary> selectOne(long diaryId, long userId) {
+        return appDatabase.diaryDao().getOne(diaryId, userId);
     }
 
     @Override
-    public Single<List<Diary>> selectList() {
-        return appDatabase.diaryDao().getList();
+    public Single<List<Diary>> selectList(long userId) {
+        return appDatabase.diaryDao().getList(userId);
     }
 
 }

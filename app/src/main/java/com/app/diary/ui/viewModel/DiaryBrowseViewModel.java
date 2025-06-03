@@ -61,13 +61,13 @@ public class DiaryBrowseViewModel extends BaseViewModel {
     /**
      * 加载数据
      */
-    public void loadData(long diaryId, boolean lazy) {
+    public void loadData(long diaryId, long userId, boolean lazy) {
         if (lazy && loaded) {
             return;
         }
         loaded = true;
 
-        diaryDataSource.selectOne(diaryId).compose(SingleObserverUtils.applyUIScheduler(this)).subscribe(new DisposableSingleObserver<Diary>() {
+        diaryDataSource.selectOne(diaryId, userId).compose(SingleObserverUtils.applyUIScheduler(this)).subscribe(new DisposableSingleObserver<Diary>() {
 
             @Override
             public void onSuccess(@NonNull Diary diary) {

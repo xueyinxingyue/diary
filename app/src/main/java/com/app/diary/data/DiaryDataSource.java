@@ -32,11 +32,11 @@ public interface DiaryDataSource {
     /**
      * 根据主键查询日记本
      */
-    Single<Diary> selectOne(long diaryId);
+    Single<Diary> selectOne(long diaryId, long userId);
 
     /**
      * 查找日记本列表
      */
-    Single<List<Diary>> selectList();
+    Single<List<Diary>> selectList(long userId);
 
 }

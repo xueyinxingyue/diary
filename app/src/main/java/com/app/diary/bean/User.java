@@ -22,7 +22,7 @@ public class User extends BaseBean{
     @NonNull
     private String email;//邮箱
 
-    //省略get、set方法
+    private String avatar;//头像
 
     @NonNull
     public Long getId() {
@@ -67,5 +67,13 @@ public class User extends BaseBean{
 
     public void setEmail(@NonNull String email) {
         this.email = email;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 }

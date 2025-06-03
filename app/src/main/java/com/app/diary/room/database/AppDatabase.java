@@ -10,7 +10,7 @@ import com.app.diary.room.converter.DateConverter;
 import com.app.diary.room.dao.DiaryDao;
 import com.app.diary.room.dao.UserDao;
 
-@Database(entities = {Diary.class, User.class}, version = 3)
+@Database(entities = {Diary.class, User.class}, version = 4)
 @TypeConverters({DateConverter.class})
 public abstract class AppDatabase extends RoomDatabase {
 

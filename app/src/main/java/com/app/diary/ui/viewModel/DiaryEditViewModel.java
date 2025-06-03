@@ -27,6 +27,8 @@ public class DiaryEditViewModel extends BaseViewModel {
 
     private MutableLiveData<Diary> diaryLiveData = new MutableLiveData<>();//日记的数据容器
 
+    private long userId = Mapp.getInstance().getCurrentUserId();
+
     private DiaryDataSource diaryDataSource;//日记数据来源
 
     public DiaryEditViewModel(@NonNull Application application) {
@@ -50,7 +52,7 @@ public class DiaryEditViewModel extends BaseViewModel {
         }
         loaded = true;
 
-        diaryDataSource.selectOne(diaryId)
+        diaryDataSource.selectOne(diaryId, userId)
                 .compose(SingleObserverUtils.applyUIScheduler(this))
                 .subscribe(new DisposableSingleObserver<Diary>() {
 
@@ -82,6 +84,7 @@ public class DiaryEditViewModel extends BaseViewModel {
                 diary.setWeather(weather);
                 diary.setTitle(title);
                 diary.setContent(content);
+                diary.setUserId(userId);
                 emitter.onSuccess(diary);
             }
 
@@ -116,7 +119,7 @@ public class DiaryEditViewModel extends BaseViewModel {
      */
     public LiveData<Boolean> updateDiary(long diaryId, Date date, String weather, String title, String content) {
         MutableLiveData<Boolean> liveData = new MutableLiveData<>();
-        diaryDataSource.selectOne(diaryId).flatMapCompletable(new Function<Diary, CompletableSource>() {
+        diaryDataSource.selectOne(diaryId, userId).flatMapCompletable(new Function<Diary, CompletableSource>() {
 
             @Override
             public CompletableSource apply(Diary diary) throws Throwable {

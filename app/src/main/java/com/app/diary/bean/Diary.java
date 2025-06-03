@@ -3,6 +3,8 @@ package com.app.diary.bean;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
 import java.util.Date;
@@ -10,7 +12,14 @@ import java.util.Date;
 /**
  * 日记
  */
-@Entity(tableName = "diary")
+@Entity(tableName = "diary",
+        foreignKeys = @ForeignKey(
+                entity = User.class,// 关联的实体类（User）
+                parentColumns = "id",// User 表中的主键列名
+                childColumns = "userId",// 当前表中的外键列名
+                onDelete = ForeignKey.CASCADE// 删除用户时，级联删除该用户的日记
+        ),
+        indices = @Index("userId"))
 public class Diary extends BaseBean {
 
     @NonNull
@@ -36,6 +45,9 @@ public class Diary extends BaseBean {
     @NonNull
     @ColumnInfo(name = "update_time")
     private Date updateTime;//修改时间
+
+    @ColumnInfo(name = "userId")
+    private Long userId;//外键用户id
 
     public Long getId() {
         return id;
@@ -93,4 +105,11 @@ public class Diary extends BaseBean {
         this.updateTime = updateTime;
     }
 
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
 }

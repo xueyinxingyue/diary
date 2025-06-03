@@ -24,6 +24,8 @@ public class Mapp extends Application {
 
     private long currentUserId = -1;
 
+    private String currentUsername = "";
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -45,6 +47,14 @@ public class Mapp extends Application {
         return currentUserId;
     }
 
+    public void setCurrentUsername(String username) {
+        currentUsername = username;
+    }
+
+    public String getCurrentUsername() {
+        return currentUsername;
+    }
+
     /**
      * 懒加载获取数据库
      */
@@ -55,13 +65,6 @@ public class Mapp extends Application {
 //                @Override
 //                public void migrate(@NonNull SupportSQLiteDatabase database) {
 //                    // 将SQLite迁移到Room，数据结构未发生变化，所以这里不做任何处理，保持空实现
-//                    database.execSQL("CREATE TABLE IF NOT EXISTS `user` (" +
-//                            "`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
-//                            "`name` TEXT NOT NULL, " +
-//                            "`username` TEXT NOT NULL, " +
-//                            "`password` TEXT NOT NULL, " +
-//                            "`email` TEXT NOT NULL)");
-//
 //                }
 //
 //            }).build();

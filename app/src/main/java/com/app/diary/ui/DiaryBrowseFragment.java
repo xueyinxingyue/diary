@@ -21,6 +21,7 @@ import androidx.lifecycle.SavedStateHandle;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavBackStackEntry;
 
+import com.app.diary.Mapp;
 import com.app.diary.R;
 import com.app.diary.bean.Constant;
 import com.app.diary.bean.Diary;
@@ -43,6 +44,9 @@ public class DiaryBrowseFragment extends BaseFragment {
     private TextView errorTextView;//错误文本控件
 
     private long diaryId;//日记主键
+
+    long userId = Mapp.getInstance().getCurrentUserId();
+
     private DiaryBrowseViewModel diaryBrowseViewModel;
     private SavedStateHandle savedStateHandle;
 
@@ -59,7 +63,7 @@ public class DiaryBrowseFragment extends BaseFragment {
                         savedStateHandle.set(Constant.DATA_CHANGE, true);
                     }
                     if (diaryBrowseViewModel != null) {
-                        diaryBrowseViewModel.loadData(diaryId, false);
+                        diaryBrowseViewModel.loadData(diaryId, userId, false);
                     }
                 }
             }
@@ -82,7 +86,7 @@ public class DiaryBrowseFragment extends BaseFragment {
         savedStateHandle = getNavController().getPreviousBackStackEntry().getSavedStateHandle();
         initView(view);
         setView();
-        diaryBrowseViewModel.loadData(diaryId, true);
+        diaryBrowseViewModel.loadData(diaryId, userId, true);
     }
 
     /**

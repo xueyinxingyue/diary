@@ -48,6 +48,7 @@ public class UserLoginViewModel extends BaseViewModel {
                     public void onSuccess(User user) {
                         userLiveData.setValue(user);
                         Mapp.getInstance().setCurrentUserId(user.getId());
+                        Mapp.getInstance().setCurrentUsername(user.getUsername());
                     }
 
                     @Override

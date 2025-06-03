@@ -37,13 +37,13 @@ public interface DiaryDao {
     /**
      * 获取日记列表
      */
-    @Query("SELECT * FROM diary ORDER BY date DESC")
-    Single<List<Diary>> getList();
+    @Query("SELECT * FROM diary WHERE userId = (:userId) ORDER BY date DESC")
+    Single<List<Diary>> getList(long userId);
 
     /**
      * 获取日记详情
      */
-    @Query("SELECT * FROM diary WHERE id = (:diaryId)")
-    Single<Diary> getOne(long diaryId);
+    @Query("SELECT * FROM diary WHERE id = (:diaryId) AND userId = (:userId)")
+    Single<Diary> getOne(long diaryId, long userId);
 
 }

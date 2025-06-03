@@ -21,7 +21,7 @@ public class UserProfileFragment extends BaseFragment {
     private TextView tvNickname, tvUsername, tvEmail;
     private TextView tvNicknameDetail, tvUsernameDetail, tvEmailDetail;
 
-    long userId = Mapp.getInstance().getCurrentUserId();//获取userID
+    String username = Mapp.getInstance().getCurrentUsername();
     private Button btnSettings, btnLogout;
 
     @Nullable

@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.app.diary.Mapp;
 import com.app.diary.R;
 import com.app.diary.ui.viewModel.UserLoginViewModel;
 import com.app.diary.utils.AppUtils;
@@ -32,7 +33,7 @@ public class IndexFragment extends BaseFragment {
 
     private UserLoginViewModel userLoginViewModel;
 
-    private String username;
+    String username = Mapp.getInstance().getCurrentUsername();
 
     @Nullable
     @Override
@@ -53,8 +54,6 @@ public class IndexFragment extends BaseFragment {
      * 初始化数据
      */
     private void initData(){
-        //TODO 获取用户id
-//        userId =
     }
 
     /**

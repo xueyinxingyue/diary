@@ -23,6 +23,8 @@ public class DiaryListViewModel extends BaseViewModel {
 
     private DiaryDataSource diaryDataSource;//日记数据来源
 
+    long userId = Mapp.getInstance().getCurrentUserId();
+
     public DiaryListViewModel(@NonNull Application application) {
         super(application);
         diaryDataSource = ((Mapp) application).getDiaryDataSource();
@@ -45,8 +47,7 @@ public class DiaryListViewModel extends BaseViewModel {
         }
         loaded = true;
 
-        //TODO 查询日记列表，后续要加上userId
-        diaryDataSource.selectList().compose(SingleObserverUtils.applyUIScheduler(this)).subscribe(new DisposableSingleObserver<List<Diary>>() {
+        diaryDataSource.selectList(userId).compose(SingleObserverUtils.applyUIScheduler(this)).subscribe(new DisposableSingleObserver<List<Diary>>() {
 
             @Override
             public void onSuccess(List<Diary> list) {
