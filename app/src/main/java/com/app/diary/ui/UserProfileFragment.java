@@ -1,5 +1,4 @@
 package com.app.diary.ui;
-
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,18 +6,16 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
 import com.app.diary.R;
 
-public class ProfileFragment extends BaseFragment {
+public class UserProfileFragment extends BaseFragment {
 
     private ImageView ivAvatar;
-    private TextView tvUsername;
-    private Button btnSettings;
-    private Button btnLogout;
+    private TextView tvNickname, tvUsername, tvEmail;
+    private TextView tvNicknameDetail, tvUsernameDetail, tvEmailDetail;
+    private Button btnSettings, btnLogout;
 
     @Nullable
     @Override
@@ -36,15 +33,15 @@ public class ProfileFragment extends BaseFragment {
 
     private void initView(View view) {
         ivAvatar = view.findViewById(R.id.iv_avatar);
-        tvUsername = view.findViewById(R.id.tv_username);
+        tvNickname = view.findViewById(R.id.tv_nickname);
+        tvNicknameDetail = view.findViewById(R.id.tv_nickname_detail);
+        tvUsernameDetail = view.findViewById(R.id.tv_username_detail);
+        tvEmailDetail = view.findViewById(R.id.tv_email_detail);
         btnSettings = view.findViewById(R.id.btn_settings);
         btnLogout = view.findViewById(R.id.btn_logout);
     }
 
     private void setView() {
-        // 这里应该从SharedPreferences或数据库加载用户信息
-        tvUsername.setText("用户名");
-
         btnSettings.setOnClickListener(v -> {
             // 跳转到设置页面
         });

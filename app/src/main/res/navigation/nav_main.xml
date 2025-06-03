@@ -111,7 +111,7 @@
     <!-- 添加个人中心Fragment -->
     <fragment
         android:id="@+id/profile_fragment"
-        android:name="com.app.diary.ui.ProfileFragment"
+        android:name="com.app.diary.ui.UserProfileFragment"
         android:label="个人中心"
         tools:layout="@layout/fragment_user_profile">
 

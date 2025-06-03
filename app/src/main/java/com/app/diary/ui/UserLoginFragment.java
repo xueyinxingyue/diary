@@ -34,12 +34,6 @@ public class UserLoginFragment extends BaseFragment {
         return inflater.inflate(R.layout.fragment_user_login, container, false);
     }
 
-//    @Override
-//    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-//        super.onViewCreated(view, savedInstanceState);
-//        initView(view);
-//        setView();
-//    }
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -74,7 +68,6 @@ public class UserLoginFragment extends BaseFragment {
             }
         });
     }
-
     private void setView() {
         btnLogin.setOnClickListener(v -> {
             String username = etUsername.getText().toString().trim();
@@ -82,17 +75,14 @@ public class UserLoginFragment extends BaseFragment {
                 etUsername.setError("请输入用户名");
                 return;
             }
-
             String password = etPassword.getText().toString();
             if (password.isEmpty()) {
                 etPassword.setError("请输入密码");
                 return;
             }
-
             // 调用 loadData 加载用户信息（触发登录逻辑）
             viewModel.loadData(username, false); // false 表示强制加载
         });
-
         tvToRegister.setOnClickListener(v -> {
             Navigation.findNavController(requireView()).navigate(R.id.action_login_to_register);
         });

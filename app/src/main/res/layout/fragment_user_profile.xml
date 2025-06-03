@@ -1,43 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="@color/light_gray_background">
 
+    <!-- 头像和昵称区域 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:layout_marginBottom="24dp">
+        android:layout_marginBottom="24dp"
+        android:padding="16dp"
+        android:background="@drawable/rounded_white_bg"
+        android:elevation="4dp">
 
         <ImageView
             android:id="@+id/iv_avatar"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:src="@drawable/ic_default_avatar"
-            android:contentDescription="用户头像"/>
+            android:contentDescription="用户头像"
+            android:layout_marginEnd="16dp"/>
 
         <TextView
-            android:id="@+id/tv_username"
+            android:id="@+id/tv_nickname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:layout_marginStart="16dp"/>
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/primary_text"/>
     </LinearLayout>
 
+    <!-- 用户信息卡片 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/rounded_white_bg"
+        android:elevation="4dp"
+        android:layout_marginBottom="16dp"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="个人信息"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/primary_text"
+            android:layout_marginBottom="12dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="昵称:"
+                android:textSize="16sp"
+                android:textColor="@color/secondary_text"/>
+
+            <TextView
+                android:id="@+id/tv_nickname_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/primary_text"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="用户名:"
+                android:textSize="16sp"
+                android:textColor="@color/secondary_text"/>
+
+            <TextView
+                android:id="@+id/tv_username_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/primary_text"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="邮箱:"
+                android:textSize="16sp"
+                android:textColor="@color/secondary_text"/>
+
+            <TextView
+                android:id="@+id/tv_email_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/primary_text"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- 操作按钮区域 -->
     <Button
         android:id="@+id/btn_settings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="设置"
-        android:layout_marginBottom="16dp"/>
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/primary_color"
+        android:textColor="@color/white"
+        style="@style/Widget.AppCompat.Button"/>
 
     <Button
         android:id="@+id/btn_logout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="退出登录"/>
-
+        android:text="退出登录"
+        android:backgroundTint="@color/error_color"
+        android:textColor="@color/white"
+        style="@style/Widget.AppCompat.Button"/>
 </LinearLayout>
