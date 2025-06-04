@@ -104,10 +104,6 @@ public class UserLoginViewModel extends BaseViewModel {
                 });
     }
 
-    // 移除 clearLoginAttempt() 方法，改用 setLoginAttempted(false)
-//    public void clearLoginAttempt() {
-//        isLoginAttempt = false;
-//    }
     public void setLoginAttempted(boolean attempted) {
         loginAttempted.setValue(attempted);
     }

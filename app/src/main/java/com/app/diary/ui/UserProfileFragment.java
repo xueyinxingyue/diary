@@ -65,7 +65,7 @@ public class UserProfileFragment extends BaseFragment {
 
             ViewModelProvider viewModelProvider = new ViewModelProvider(requireActivity());
             UserLoginViewModel loginViewModel = viewModelProvider.get(UserLoginViewModel.class);
-            loginViewModel.clearUserData(); // 添加此方法到 UserLoginViewModel
+            loginViewModel.clearUserData();
 
             // 跳转到登录页
             getNavController().navigate(R.id.action_profile_to_login);
