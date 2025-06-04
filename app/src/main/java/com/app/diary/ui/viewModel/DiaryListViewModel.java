@@ -18,49 +18,36 @@ import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.observers.DisposableSingleObserver;
 
 public class DiaryListViewModel extends BaseViewModel {
-
-    private MutableLiveData<List<Diary>> diaryListLiveData = new MutableLiveData<>();//日记列表的数据容器
-
-    private DiaryDataSource diaryDataSource;//日记数据来源
-
-    long userId = Mapp.getInstance().getCurrentUserId();
+    private MutableLiveData<List<Diary>> diaryListLiveData = new MutableLiveData<>();
+    private DiaryDataSource diaryDataSource;
 
     public DiaryListViewModel(@NonNull Application application) {
         super(application);
         diaryDataSource = ((Mapp) application).getDiaryDataSource();
     }
-
-    /**
-     * 获取日记列表的数据容器
-     */
     public LiveData<List<Diary>> getDiaryListLiveData() {
         return diaryListLiveData;
-
     }
 
-    /**
-     * 加载数据
-     */
     public void loadData(boolean lazy) {
-        if (lazy && loaded) {
-            return;
-        }
+        if (lazy && loaded) return;
         loaded = true;
 
-        diaryDataSource.selectList(userId).compose(SingleObserverUtils.applyUIScheduler(this)).subscribe(new DisposableSingleObserver<List<Diary>>() {
-
-            @Override
-            public void onSuccess(List<Diary> list) {
-                diaryListLiveData.setValue(list);
-            }
-
-            @Override
-            public void onError(@NonNull Throwable e) {
-                ToastUtils.showShort("获取失败, 原因:" + e.getMessage());
-                diaryListLiveData.setValue(null);
-            }
-
-        });
+        // 动态获取当前用户 ID
+        long currentUserId = Mapp.getInstance().getCurrentUserId();
+        Log.d("tag", "[加载日记列表] Current userId: " + currentUserId);
+        diaryDataSource.selectList(currentUserId) // 使用最新的 userId
+                .compose(SingleObserverUtils.applyUIScheduler(this))
+                .subscribe(new DisposableSingleObserver<List<Diary>>() {
+                    @Override
+                    public void onSuccess(List<Diary> list) {
+                        diaryListLiveData.setValue(list);
+                    }
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        ToastUtils.showShort("获取失败: " + e.getMessage());
+                        diaryListLiveData.setValue(null);
+                    }
+                });
     }
-
 }

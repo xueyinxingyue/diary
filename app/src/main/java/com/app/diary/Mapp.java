@@ -47,12 +47,19 @@ public class Mapp extends Application {
         return currentUserId;
     }
 
+
     public void setCurrentUsername(String username) {
         currentUsername = username;
     }
 
     public String getCurrentUsername() {
         return currentUsername;
+    }
+
+//    修改 Mapp.java 中的方法，避免解析 null：
+    public void clearCurrentUser() {
+        this.currentUserId = -1; // 或 0，表示无效用户
+        this.currentUsername = ""; // 同时清空用户名
     }
 
     /**

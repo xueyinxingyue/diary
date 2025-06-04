@@ -54,9 +54,12 @@ public class UserProfileFragment extends BaseFragment {
         });
 
         btnLogout.setOnClickListener(v -> {
-            // 清除登录状态
-             SharedPreferences.Editor editor = getContext().getSharedPreferences("user_prefs", Context.MODE_PRIVATE).edit();
-             editor.putBoolean("is_logged_in", false).apply();
+            // 清除用户状态
+            SharedPreferences.Editor editor = getContext()
+                    .getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
+                    .edit();
+            editor.putBoolean("is_logged_in", false).apply();
+            Mapp.getInstance().clearCurrentUser(); // 清除当前用户ID
 
             // 跳转到登录页
             getNavController().navigate(R.id.action_profile_to_login);

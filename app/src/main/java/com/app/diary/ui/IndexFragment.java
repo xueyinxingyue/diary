@@ -97,24 +97,6 @@ public class IndexFragment extends BaseFragment {
 
         });
 
-//        //设置点击注册按钮的点击事件
-//        loginButton.setOnClickListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View v) {
-//                getNavController().navigate(IndexFragmentDirections.diaryEditAction(0));
-//            }
-//
-//        });
-//
-//        // 在setView方法中修改登录按钮的点击事件
-//        loginButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                getNavController().navigate(IndexFragmentDirections.loginAction());
-//            }
-//        });
-
         //将当前版本名称显示在文本上
         versionTextView.setText("当前版本:v" + AppUtils.getVersionName());
 

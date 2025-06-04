@@ -15,6 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
+import com.app.diary.Mapp;
 import com.app.diary.R;
 import com.app.diary.ui.viewModel.UserLoginViewModel;
 
@@ -57,6 +58,9 @@ public class UserLoginFragment extends BaseFragment {
                 String inputPassword = etPassword.getText().toString();
                 if (inputPassword.equals(user.getPassword())) {
                     Log.i("tag","登陆成功");
+                    //   在登录成功的回调中，保存当前用户的 ID 到 Mapp：
+                    Mapp.getInstance().setCurrentUserId(user.getId());
+
                     Toast.makeText(requireContext(), "登录成功", Toast.LENGTH_SHORT).show();
                     Navigation.findNavController(requireView())
                             .navigate(R.id.action_login_to_index);
