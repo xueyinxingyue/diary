@@ -11,9 +11,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.app.diary.Mapp;
 import com.app.diary.R;
+import com.app.diary.ui.viewModel.UserLoginViewModel;
 
 public class UserProfileFragment extends BaseFragment {
 
@@ -60,6 +62,10 @@ public class UserProfileFragment extends BaseFragment {
                     .edit();
             editor.putBoolean("is_logged_in", false).apply();
             Mapp.getInstance().clearCurrentUser(); // 清除当前用户ID
+
+            ViewModelProvider viewModelProvider = new ViewModelProvider(requireActivity());
+            UserLoginViewModel loginViewModel = viewModelProvider.get(UserLoginViewModel.class);
+            loginViewModel.clearUserData(); // 添加此方法到 UserLoginViewModel
 
             // 跳转到登录页
             getNavController().navigate(R.id.action_profile_to_login);
