@@ -66,17 +66,6 @@ public class Mapp extends Application {
      * 懒加载获取数据库
      */
     public AppDatabase getAppDatabase() {
-//        if (appDatabase == null) {
-//            appDatabase = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "diary.db").addMigrations(new Migration(2, 3) {
-//
-//                @Override
-//                public void migrate(@NonNull SupportSQLiteDatabase database) {
-//                    // 将SQLite迁移到Room，数据结构未发生变化，所以这里不做任何处理，保持空实现
-//                }
-//
-//            }).build();
-//
-//        }
         appDatabase = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "diary.db")
                 .addMigrations(new Migration(2, 3) {
                     @Override
@@ -104,7 +93,9 @@ public class Mapp extends Application {
      */
     public UserDataSource getUserDataSource() {
         if (userDataSource == null) {
-            userDataSource = new UserDataSourceImpl(getAppDatabase());
+            // 修改为使用 getAppDatabase() 而不是 AppDatabase.getDatabase()
+            AppDatabase db = getAppDatabase();
+            userDataSource = new UserDataSourceImpl(db);
         }
         return userDataSource;
     }

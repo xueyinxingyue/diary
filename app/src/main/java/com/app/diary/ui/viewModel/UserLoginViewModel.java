@@ -38,35 +38,9 @@ public class UserLoginViewModel extends BaseViewModel {
     public LiveData<User> getUserLiveData() {
         return userLiveData;
     }
-
     /**
      * 加载用户信息（登录逻辑）
      */
-//    public void loadData(String username, boolean lazy) {
-//        if (lazy && loaded) {
-//            return;
-//        }
-//        loaded = true;
-//
-//        userDataSource.selectOne(username)
-//                .compose(SingleObserverUtils.applyUIScheduler(this))
-//                .subscribe(new DisposableSingleObserver<User>() {
-//                    @Override
-//                    public void onSuccess(User user) {
-//                        userLiveData.setValue(user);
-//                        Mapp.getInstance().setCurrentUserId(user.getId());
-//                        Mapp.getInstance().setCurrentUsername(user.getUsername());
-//                    }
-//
-//                    @Override
-//                    public void onError(@NonNull Throwable e) {
-//                        userLiveData.setValue(null);
-//                    }
-//                });
-//    }
-
-//    private boolean isLoginAttempt = false;  // 新增字段，标记是否为登录尝试
-
     public void loadData(String username, boolean lazy) {
         Log.d("tag", "开始加载数据，登录尝试状态: " + isLoginAttempted());
         if (lazy && loaded) {

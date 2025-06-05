@@ -54,25 +54,6 @@ public class UserLoginFragment extends BaseFragment {
         viewModel = new ViewModelProvider(this).get(UserLoginViewModel.class);
         // 使用 this 而非 requireActivity()
 
-//        viewModel.getUserLiveData().observe(getViewLifecycleOwner(), user -> {
-//            if (user != null) {
-//                String inputPassword = etPassword.getText().toString();
-//                if (inputPassword.equals(user.getPassword())) {
-//                    Log.i("tag","登陆成功");
-//                    //   在登录成功的回调中，保存当前用户的 ID 到 Mapp：
-//                    Mapp.getInstance().setCurrentUserId(user.getId());
-//
-//                    Toast.makeText(requireContext(), "登录成功", Toast.LENGTH_SHORT).show();
-//                    Navigation.findNavController(requireView())
-//                            .navigate(R.id.action_login_to_index);
-//                } else {
-//                    Toast.makeText(requireContext(), "密码错误", Toast.LENGTH_SHORT).show();
-//                }
-//            } else {
-//                Toast.makeText(requireContext(), "用户不存在", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//    }
 
         viewModel.getUserLiveData().observe(getViewLifecycleOwner(), user -> {
             Log.d("LoginDebug", "收到用户数据，登录尝试状态: " + viewModel.isLoginAttempted());

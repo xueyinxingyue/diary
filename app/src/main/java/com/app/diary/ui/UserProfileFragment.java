@@ -13,9 +13,17 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.app.diary.bean.User;
+
 import com.app.diary.Mapp;
 import com.app.diary.R;
+import com.app.diary.data.UserDataSource;
 import com.app.diary.ui.viewModel.UserLoginViewModel;
+import com.app.diary.utils.rxjava.SingleObserverUtils;
+
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.observers.DisposableSingleObserver;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class UserProfileFragment extends BaseFragment {
 
@@ -23,6 +31,7 @@ public class UserProfileFragment extends BaseFragment {
     private TextView tvNickname, tvUsername, tvEmail;
     private TextView tvNicknameDetail, tvUsernameDetail, tvEmailDetail;
 
+    private UserDataSource userDataSource;
     String username = Mapp.getInstance().getCurrentUsername();
     private Button btnSettings, btnLogout;
 
@@ -33,10 +42,16 @@ public class UserProfileFragment extends BaseFragment {
         return inflater.inflate(R.layout.fragment_user_profile, container, false);
     }
 
+    private void initDataSource() {
+        userDataSource = ((Mapp) requireActivity().getApplication()).getUserDataSource();
+    }
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initView(view);
+        initDataSource();// 初始化数据源
+        loadUserData();
         setView();
     }
 
@@ -48,6 +63,60 @@ public class UserProfileFragment extends BaseFragment {
         tvEmailDetail = view.findViewById(R.id.tv_email_detail);
         btnSettings = view.findViewById(R.id.btn_settings);
         btnLogout = view.findViewById(R.id.btn_logout);
+    }
+//    private void loadUserData() {
+//        String currentUsername = Mapp.getInstance().getCurrentUsername();
+//        if (currentUsername != null && !currentUsername.isEmpty()) {
+//            userDataSource.selectOne(currentUsername)
+//                    .compose(SingleObserverUtils.applyUIScheduler(this))
+//                    .subscribe(new DisposableSingleObserver<User>() {
+//                        @Override
+//                        public void onSuccess(User user) {
+//                            updateUI(user);
+//                        }
+//
+//                        @Override
+//                        public void onError(@NonNull Throwable e) {
+//                            Log.e("UserProfile", "Failed to load user data", e);
+//                        }
+//                    });
+//        }
+//    }
+private void loadUserData() {
+    String currentUsername = Mapp.getInstance().getCurrentUsername();
+    if (currentUsername != null && !currentUsername.isEmpty()) {
+        userDataSource.selectOne(currentUsername)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new DisposableSingleObserver<User>() {
+                    @Override
+                    public void onSuccess(User user) {
+                        updateUI(user);
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        Log.e("UserProfile", "Failed to load user data", e);
+                    }
+                });
+    }
+}
+
+    private void updateUI(User user) {
+        if (user != null) {
+            // 设置昵称
+            tvNickname.setText(user.getName());
+            tvNicknameDetail.setText(user.getName());
+
+            // 设置用户名
+            tvUsernameDetail.setText(user.getUsername());
+
+            // 设置邮箱
+            tvEmailDetail.setText(user.getEmail());
+
+            // 可以在这里添加头像加载逻辑
+            // 例如：Glide.with(this).load(user.getAvatar()).into(ivAvatar);
+        }
     }
 
     private void setView() {
