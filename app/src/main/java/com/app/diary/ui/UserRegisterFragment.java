@@ -84,8 +84,8 @@ public class UserRegisterFragment extends BaseFragment {
 
         viewModel.getRegisterSuccess().observe(getViewLifecycleOwner(), success -> {
             if (Boolean.TRUE.equals(success)) {
-                Toast.makeText(requireContext(), "注册成功", Toast.LENGTH_SHORT).show();
-                Navigation.findNavController(requireView()).navigate(R.id.action_register_to_index);
+                Toast.makeText(requireContext(), "注册成功，请登录", Toast.LENGTH_SHORT).show();
+                Navigation.findNavController(requireView()).navigate(R.id.action_register_to_login);
             }
         });
 

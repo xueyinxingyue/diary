@@ -42,9 +42,9 @@
 
         <!-- 注册成功后跳转到首页 -->
         <action
-            android:id="@+id/action_register_to_index"
-            app:destination="@id/index_fragment"
-            app:popUpTo="@id/index_fragment"
+            android:id="@+id/action_register_to_login"
+            app:destination="@id/login_fragment"
+            app:popUpTo="@id/login_fragment"
             app:popUpToInclusive="true"/>
 
     </fragment>
@@ -61,9 +61,8 @@
             android:id="@+id/action_login_to_index"
             app:destination="@id/index_fragment"
             app:popUpTo="@id/index_fragment"
-            app:popUpToInclusive="true"
+            app:popUpToInclusive="true" />
 
-            />
 <!--        跳转到注册页的action-->
         <action
             android:id="@+id/action_login_to_register"
