@@ -63,8 +63,6 @@ public class IndexFragment extends BaseFragment {
         toolbar = view.findViewById(R.id.toolbar);
         browseButton = view.findViewById(R.id.browse_button);
         createButton = view.findViewById(R.id.create_button);
-//        注册页面
-//        loginButton = view.findViewById(R.id.login_button);
 
         profileButton = view.findViewById(R.id.profile_button);
         versionTextView = view.findViewById(R.id.version_textView);

@@ -29,7 +29,7 @@ public class UserProfileFragment extends BaseFragment {
 
     private ImageView ivAvatar;
     private TextView tvNickname, tvUsername, tvEmail;
-    private TextView tvNicknameDetail, tvUsernameDetail, tvEmailDetail;
+    private TextView tvUsernameDetail, tvEmailDetail;
 
     private UserDataSource userDataSource;
     String username = Mapp.getInstance().getCurrentUsername();
@@ -58,30 +58,12 @@ public class UserProfileFragment extends BaseFragment {
     private void initView(View view) {
         ivAvatar = view.findViewById(R.id.iv_avatar);
         tvNickname = view.findViewById(R.id.tv_nickname);
-        tvNicknameDetail = view.findViewById(R.id.tv_nickname_detail);
         tvUsernameDetail = view.findViewById(R.id.tv_username_detail);
         tvEmailDetail = view.findViewById(R.id.tv_email_detail);
         btnSettings = view.findViewById(R.id.btn_settings);
         btnLogout = view.findViewById(R.id.btn_logout);
     }
-//    private void loadUserData() {
-//        String currentUsername = Mapp.getInstance().getCurrentUsername();
-//        if (currentUsername != null && !currentUsername.isEmpty()) {
-//            userDataSource.selectOne(currentUsername)
-//                    .compose(SingleObserverUtils.applyUIScheduler(this))
-//                    .subscribe(new DisposableSingleObserver<User>() {
-//                        @Override
-//                        public void onSuccess(User user) {
-//                            updateUI(user);
-//                        }
-//
-//                        @Override
-//                        public void onError(@NonNull Throwable e) {
-//                            Log.e("UserProfile", "Failed to load user data", e);
-//                        }
-//                    });
-//        }
-//    }
+
 private void loadUserData() {
     String currentUsername = Mapp.getInstance().getCurrentUsername();
     if (currentUsername != null && !currentUsername.isEmpty()) {
@@ -106,7 +88,6 @@ private void loadUserData() {
         if (user != null) {
             // 设置昵称
             tvNickname.setText(user.getName());
-            tvNicknameDetail.setText(user.getName());
 
             // 设置用户名
             tvUsernameDetail.setText(user.getUsername());
