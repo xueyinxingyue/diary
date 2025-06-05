@@ -12,9 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.App.NoActionBar"
         tools:targetApi="31">
-        <activity
-            android:name=".ui.UserLoginFragment"
-            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".ui.UserLoginFragment"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".ui.MainActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
