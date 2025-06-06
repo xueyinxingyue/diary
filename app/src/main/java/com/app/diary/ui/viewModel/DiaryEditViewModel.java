@@ -92,7 +92,6 @@ public class DiaryEditViewModel extends BaseViewModel {
 
             @Override
             public CompletableSource apply(Diary diary) throws Throwable {
-                //TODO 新增日记
                 return diaryDataSource.insertDiary(diary);
             }
 

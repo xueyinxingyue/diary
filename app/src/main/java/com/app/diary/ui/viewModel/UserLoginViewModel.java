@@ -17,7 +17,6 @@ import io.reactivex.rxjava3.observers.DisposableSingleObserver;
 
 public class UserLoginViewModel extends BaseViewModel {
     private MutableLiveData<User> userLiveData = new MutableLiveData<>();
-    private MutableLiveData<Boolean> registerSuccess = new MutableLiveData<>();
     private MutableLiveData<String> errorLiveData = new MutableLiveData<>();
 
     private MutableLiveData<Boolean> loginAttempted = new MutableLiveData<>(false);

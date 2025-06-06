@@ -38,9 +38,9 @@ public class UserLoginFragment extends BaseFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        initView(view);       // 1. 初始化控件
-        initViewModel();      // 2. 初始化 ViewModel（新增这行）
-        setView();           // 3. 设置控件事件监听
+        initView(view);
+        initViewModel();
+        setView();
     }
 
     private void initView(@NonNull View view) {

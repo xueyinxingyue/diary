@@ -11,10 +11,8 @@ import androidx.lifecycle.MutableLiveData;
 import com.app.diary.Mapp;
 import com.app.diary.bean.User;
 import com.app.diary.data.UserDataSource;
-import com.app.diary.utils.rxjava.CompletableObserverUtils;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class UserRegisterViewModel extends BaseViewModel {

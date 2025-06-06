@@ -32,7 +32,6 @@ public class UserProfileFragment extends BaseFragment {
     private TextView tvUsernameDetail, tvEmailDetail;
 
     private UserDataSource userDataSource;
-    String username = Mapp.getInstance().getCurrentUsername();
     private Button btnSettings, btnLogout;
 
     @Nullable

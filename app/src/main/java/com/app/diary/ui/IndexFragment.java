@@ -25,8 +25,6 @@ public class IndexFragment extends BaseFragment {
     private Toolbar toolbar;//标题栏控件
     private Button browseButton;//查看日记按钮控件
     private Button createButton;//创建日记按钮控件
-
-//    private Button loginButton;
     private Button profileButton;
 
     private TextView versionTextView;//当前版本文本控件
