@@ -35,7 +35,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * 编辑日志
+ * 编辑日记
  */
 public class DiaryEditFragment extends BaseFragment {
 
