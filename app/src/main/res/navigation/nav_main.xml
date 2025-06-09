@@ -23,9 +23,7 @@
             android:id="@+id/diary_edit_action"
             app:destination="@id/diary_edit_fragment" />
 
-        <action
-            android:id="@+id/login_action"
-            app:destination="@id/login_fragment" />
+
 
         <action
             android:id="@+id/action_index_to_profile"
