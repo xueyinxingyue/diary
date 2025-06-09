@@ -56,7 +56,6 @@ public class Mapp extends Application {
         return currentUsername;
     }
 
-//    修改 Mapp.java 中的方法，避免解析 null：
     public void clearCurrentUser() {
         this.currentUserId = -1; // 或 0，表示无效用户
         this.currentUsername = ""; // 同时清空用户名
@@ -93,7 +92,6 @@ public class Mapp extends Application {
      */
     public UserDataSource getUserDataSource() {
         if (userDataSource == null) {
-            // 修改为使用 getAppDatabase() 而不是 AppDatabase.getDatabase()
             AppDatabase db = getAppDatabase();
             userDataSource = new UserDataSourceImpl(db);
         }

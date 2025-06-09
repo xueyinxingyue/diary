@@ -49,7 +49,7 @@ public class UserProfileFragment extends BaseFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initView(view);
-        initDataSource();// 初始化数据源
+        initDataSource();
         loadUserData();
         setView();
     }

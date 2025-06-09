@@ -21,10 +21,8 @@ public abstract class AppDatabase extends RoomDatabase {
 
     public abstract UserDao userDao();
 
-    // 定义静态的instance变量
     private static AppDatabase instance;
 
-    // 添加这个方法
     public static synchronized AppDatabase getDatabase(Context context) {
         if (instance == null) {
             instance = Room.databaseBuilder(context.getApplicationContext(),

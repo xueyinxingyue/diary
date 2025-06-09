@@ -52,8 +52,6 @@ public class UserLoginFragment extends BaseFragment {
 
     private void initViewModel() {
         viewModel = new ViewModelProvider(this).get(UserLoginViewModel.class);
-        // 使用 this 而非 requireActivity()
-
 
         viewModel.getUserLiveData().observe(getViewLifecycleOwner(), user -> {
             Log.d("LoginDebug", "收到用户数据，登录尝试状态: " + viewModel.isLoginAttempted());
