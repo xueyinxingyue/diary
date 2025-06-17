@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import com.app.diary.bean.User;
 
@@ -32,7 +33,7 @@ public class UserProfileFragment extends BaseFragment {
     private TextView tvUsernameDetail, tvEmailDetail;
 
     private UserDataSource userDataSource;
-    private Button btnSettings, btnLogout;
+    private Button  btnLogout, btnChat;
 
     @Nullable
     @Override
@@ -59,7 +60,7 @@ public class UserProfileFragment extends BaseFragment {
         tvNickname = view.findViewById(R.id.tv_nickname);
         tvUsernameDetail = view.findViewById(R.id.tv_username_detail);
         tvEmailDetail = view.findViewById(R.id.tv_email_detail);
-        btnSettings = view.findViewById(R.id.btn_settings);
+        btnChat = view.findViewById(R.id.btn_chat);
         btnLogout = view.findViewById(R.id.btn_logout);
     }
 
@@ -100,7 +101,8 @@ private void loadUserData() {
     }
 
     private void setView() {
-        btnSettings.setOnClickListener(v -> {
+        btnChat.setOnClickListener(v -> {
+            Navigation.findNavController(v).navigate(R.id.action_index_to_chat);
             // 跳转到设置页面
         });
 

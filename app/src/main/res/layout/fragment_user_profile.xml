@@ -98,10 +98,10 @@
 
     <!-- 操作按钮区域 -->
     <Button
-        android:id="@+id/btn_settings"
+        android:id="@+id/btn_chat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="设置"
+        android:text="AI智能客服"
         android:layout_marginBottom="16dp"
         android:backgroundTint="@color/primary_color"
         android:textColor="@color/white"

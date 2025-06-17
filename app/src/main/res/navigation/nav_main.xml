@@ -121,6 +121,16 @@
             app:destination="@id/login_fragment"
             app:popUpTo="@id/login_fragment"
             app:popUpToInclusive="true"/>
+
+        <action
+            android:id="@+id/action_index_to_chat"
+            app:destination="@id/chat_fragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/chat_fragment"
+        android:name="com.app.diary.ui.ChatFragment"
+        android:label="AI聊天助手"
+        tools:layout="@layout/fragment_chat" />
 
 </navigation>
