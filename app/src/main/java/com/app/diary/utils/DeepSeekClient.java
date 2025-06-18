@@ -16,7 +16,7 @@ import okhttp3.*;
  * 作者：孔立斌 15602384971
  */
 public class DeepSeekClient {
-    private static final String API_KEY = "sk-a2ce892853ff4330bb9879338979e44a"; // 替换为你的 DeepSeek API Key
+    private static final String API_KEY = ""; // 替换为你的 DeepSeek API Key
     private static final String API_URL = "https://api.deepseek.com/v1/chat/completions";
     private static final String MODEL = "deepseek-chat";    // DeepSeek-V3
     // private final String MODEL = "deepseek-reasoner";    // DeepSeek-R1
